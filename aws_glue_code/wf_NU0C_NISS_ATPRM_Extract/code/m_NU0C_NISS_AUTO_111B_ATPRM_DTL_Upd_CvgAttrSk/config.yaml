@@ -1,0 +1,24 @@
+job:
+  name: m_NU0C_NISS_AUTO_111B_ATPRM_DTL_Upd_CvgAttrSk
+
+spark:
+  app_name: m_NU0C_NISS_AUTO_111B_ATPRM_DTL_Upd_CvgAttrSk
+
+  conf:
+    spark.sql.shuffle.partitions: "20"
+    spark.sql.adaptive.enabled: "true"
+    spark.sql.adaptive.coalescePartitions.enabled: "true"
+    spark.serializer: "org.apache.spark.serializer.KryoSerializer"
+
+  log_level: WARN
+
+logging:
+  provider: stdlib
+  level: INFO
+  format: json
+
+# Environment-specific values, read in job.py via self._require_env(self.env, "<KEY>").
+# REPLACE_WITH_ values fail the job at start. SNOWFLAKE_CONNECTION_* values are AWS Glue Connection names.
+env:
+  S3_OUTPUT_BUCKET: "REPLACE_WITH_S3_OUTPUT_BUCKET"
+  GLUE_DATABASE: "REPLACE_WITH_GLUE_DATABASE"
